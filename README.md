@@ -37,7 +37,7 @@ Add following repository and dependency to your project's POM
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-watermark-cloud</artifactId>
-    <version>19.11</version>
+    <version>19.12</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/groupdocs-watermark-cloud-19.11.jar
+* target/groupdocs-watermark-cloud-19.12.jar
 * target/lib/*.jar
 
 ## Getting Started
