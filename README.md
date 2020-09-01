@@ -91,12 +91,4 @@ public class ApiExample {
 ## Licensing
 All GroupDocs.Watermark Cloud SDKs are licensed under [MIT License](LICENSE).
 
-## Resources
-+ [**Website**](https://www.groupdocs.cloud)
-+ [**Product Home**](https://products.groupdocs.cloud/watermark)
-+ [**Documentation**](https://docs.groupdocs.cloud/display/watermarkcloud/Home)
-+ [**Free Support Forum**](https://forum.groupdocs.cloud/c/watermark)
-+ [**Blog**](https://blog.groupdocs.cloud/category/watermark)
-
-## Contact Us
-Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/watermark).
+[Home](https://www.groupdocs.cloud/) | [Product Page](https://products.groupdocs.cloud/watermark/java) | [Docs](https://docs.groupdocs.cloud/watermark/) | [Demos](https://products.groupdocs.app/watermark/family) | [API Reference](https://apireference.groupdocs.cloud/watermark/) | [Examples](https://github.com/groupdocs-watermark-cloud/groupdocs-watermark-cloud-java-samples) | [Blog](https://blog.groupdocs.cloud/category/watermark/) | [Free Support](https://forum.groupdocs.cloud/c/watermark) | [Free Trial](https://purchase.groupdocs.cloud/trial)
