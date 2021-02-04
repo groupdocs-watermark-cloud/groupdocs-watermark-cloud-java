@@ -6,7 +6,6 @@ GroupDocs.Watermark Cloud is a REST API for managing watermarks in the documents
 
 This repository contains GroupDocs.Watermark Cloud SDK for Java source code. This SDK allows you to work with GroupDocs.Watermark Cloud REST APIs in your Java applications.
 
-
 ## Cloud Document Watermarking Features
 
 - Add text or image watermarks to documents of supported formats.
@@ -86,35 +85,20 @@ Then manually install the following JARs:
 ## Getting Started
 
 Please follow the [installation](#installation) instruction and execute the following Java code:
+## Get Supported File Formats for Watermark
 
 ```java
-import com.groupdocs.cloud.watermark.client.*;
-import com.groupdocs.cloud.watermark.model.*;
-import com.groupdocs.cloud.watermark.api.WatermarkApi;
+// Get Client Id and Client Secret from https://dashboard.groupdocs.cloud
+String MyClientId = "";
+String MyClientSecret = "";
 
-import java.util.*;
+// Create instance of the API
+Configuration configuration = new Configuration(MyClientId, MyClientSecret);
+InfoApi infoApi = new InfoApi(configuration);
 
-public class ApiExample {
-
-    public static void main(String[] args) {
-        //TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).
-        String appSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
-        String appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-
-        Configuration configuration = new Configuration(appSid, appKey);
-
-        WatermarkApi watermarkApi = new WatermarkApi(configuration);
-
-        try {
-            FormatsResult response = watermarkApi.getSupportedFileFormats();
-            for (Format format : response.getFormats()) {
-                System.out.println(format.getFileFormat());
-            }
-        } catch (ApiException e) {
-            System.err.println("Failed to get supported file formats");
-            e.printStackTrace();
-        }
-    }
+FormatsResult response = infoApi.getSupportedFileFormats();
+for (Format format : response.getFormats()) {
+	System.out.println(format.getFileFormat());
 }
 ```
 
