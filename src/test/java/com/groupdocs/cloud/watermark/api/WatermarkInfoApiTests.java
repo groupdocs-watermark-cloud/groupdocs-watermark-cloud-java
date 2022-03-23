@@ -94,7 +94,7 @@ public class WatermarkInfoApiTests extends BaseApiTest {
 
         assertNotNull(result);
         assertEquals("VISIO DRAWING", result.getFileType().getFileFormat().toUpperCase());
-        assertEquals(Long.valueOf(1665923), result.getPageCount());
+        assertEquals(Integer.valueOf(2), result.getPageCount());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class WatermarkInfoApiTests extends BaseApiTest {
     public void InfoApiTest_Xlsx() throws ApiException {
         // Arrange
         InfoOptions options = new InfoOptions();
-        options.setFileInfo(TestFiles.Pptx.ToFileInfo());
+        options.setFileInfo(TestFiles.Xlsx.ToFileInfo());
         GetInfoRequest request = new GetInfoRequest(options);
 
         // Act & Assert
@@ -131,7 +131,7 @@ public class WatermarkInfoApiTests extends BaseApiTest {
     public void InfoApiTest_Jpeg() throws ApiException {
         // Arrange
         InfoOptions options = new InfoOptions();
-        options.setFileInfo(TestFiles.Pptx.ToFileInfo());
+        options.setFileInfo(TestFiles.Jpg.ToFileInfo());
         GetInfoRequest request = new GetInfoRequest(options);
 
         // Act & Assert
@@ -170,7 +170,7 @@ public class WatermarkInfoApiTests extends BaseApiTest {
             infoApi.getInfo(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("The specified file 'documents/sample.zip' has type which is not currently supported.", ex.getMessage());
+            assertEquals("The specified file 'documents\\sample.zip' has type which is not currently supported.", ex.getMessage());
         }
     }
 }

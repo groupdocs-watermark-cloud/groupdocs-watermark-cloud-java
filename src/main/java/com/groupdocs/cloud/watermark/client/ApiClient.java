@@ -97,7 +97,7 @@ public class ApiClient {
         this.json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("java-sdk/19.12");
+        setUserAgent("java-sdk/22.3");
 
         // Set connection timeout
         setConnectTimeout(configuration.getTimeout());
@@ -878,6 +878,20 @@ public class ApiClient {
                   throw new ApiException(apiError.getError().getMessage(), response.code());
                 }   
                 
+				if(apiError != null && apiError.getMessage() != null) {
+                    throw new ApiException(apiError.getMessage(), response.code());
+                }
+
+                com.groupdocs.cloud.watermark.model.ApiError apiError1 = null;
+                try {
+                    apiError1 = json.deserialize(respBody, com.groupdocs.cloud.watermark.model.ApiError.class);
+                } catch (Exception e) {
+                    //NOTE: ignore
+                }
+                if(apiError1 != null && apiError1.getError() != null && apiError1.getError().getMessage() != null) {
+                    throw new ApiException(apiError1.getError().getMessage(), response.code());
+                }
+				
                 AuthError authError = null;
                 try {
                   authError = json.deserialize(respBody, AuthError.class);
