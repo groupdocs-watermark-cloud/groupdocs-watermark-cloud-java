@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="ApiClient.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -97,7 +97,7 @@ public class ApiClient {
         this.json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("java-sdk/23.8");
+        setUserAgent("java-sdk/26.10");
 
         // Set connection timeout
         setConnectTimeout(configuration.getTimeout());
@@ -868,30 +868,26 @@ public class ApiClient {
                   throw new ApiException(response.message(), response.code());
                 }
     
-                ApiError apiError = null;
+                com.groupdocs.cloud.watermark.model.Error Error = null;
                 try {
-                  apiError = json.deserialize(respBody, ApiError.class);
+                  Error = json.deserialize(respBody, com.groupdocs.cloud.watermark.model.Error.class);
                 } catch (Exception e) {
                   //NOTE: ignore
                 }
-                if(apiError != null && apiError.getError() != null) {
-                  throw new ApiException(apiError.getError().getMessage(), response.code());
-                }   
-                
-				if(apiError != null && apiError.getMessage() != null) {
-                    throw new ApiException(apiError.getMessage(), response.code());
+               if(Error != null && (Error.getCode() != null || Error.getMessage() != null)) {
+                  throw new ApiException(Error.getMessage(), response.code());
                 }
 
-                com.groupdocs.cloud.watermark.model.ApiError apiError1 = null;
+                com.groupdocs.cloud.watermark.model.ApiError apiError = null;
                 try {
-                    apiError1 = json.deserialize(respBody, com.groupdocs.cloud.watermark.model.ApiError.class);
+                  apiError = json.deserialize(respBody, com.groupdocs.cloud.watermark.model.ApiError.class);
                 } catch (Exception e) {
-                    //NOTE: ignore
+                  //NOTE: ignore
                 }
-                if(apiError1 != null && apiError1.getError() != null && apiError1.getError().getMessage() != null) {
-                    throw new ApiException(apiError1.getError().getMessage(), response.code());
+               if(apiError != null && apiError.getError() != null && apiError.getError().getMessage() != null) {
+                  throw new ApiException(apiError.getError().getMessage(), response.code());
                 }
-				
+
                 AuthError authError = null;
                 try {
                   authError = json.deserialize(respBody, AuthError.class);

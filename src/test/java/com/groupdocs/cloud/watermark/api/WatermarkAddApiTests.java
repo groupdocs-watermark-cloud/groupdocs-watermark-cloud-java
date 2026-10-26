@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -54,11 +54,103 @@ public class WatermarkAddApiTests extends BaseApiTest {
         options.setWatermarkDetails(deatilsList);
 
         AddRequest request = new AddRequest(options);
-        WatermarkResult result = watermarkApi.add(request);
+        AddResult result = watermarkApi.add(request);
 
         // Act & Assert
         assertNotNull(result);
+        assertEquals(Integer.valueOf(1), result.getAppliedWatermarksCount());
         CheckIfWatermarkExist(result.getPath(), "New watermark text", null);
+    }
+
+    @Test
+    public void TestAddTiledWatermark() throws ApiException {
+        // Arrange
+        WatermarkOptions options = new WatermarkOptions();
+        options.setFileInfo(TestFiles.Pdf.ToFileInfo());
+        options.setOutputFolder(DefaultOutputPath);
+        Thickness padding = new Thickness();
+        padding.setLeft(5d);
+        padding.setRight(5d);
+        padding.setTop(5d);
+        padding.setBottom(5d);
+        TextWatermarkOptions textWatermarkOptions = new TextWatermarkOptions();
+        textWatermarkOptions.setText("Tiled watermark");
+        textWatermarkOptions.setFontFamilyName("Arial");
+        textWatermarkOptions.setFontSize(12d);
+        textWatermarkOptions.setPadding(padding);
+        MeasureValue lineSpacing = new MeasureValue();
+        lineSpacing.setMeasureType("Percent");
+        lineSpacing.setValue(10d);
+        MeasureValue watermarkSpacing = new MeasureValue();
+        watermarkSpacing.setMeasureType("Percent");
+        watermarkSpacing.setValue(10d);
+        TileOptions tileOptions = new TileOptions();
+        tileOptions.setTileType("Offset");
+        tileOptions.setLineSpacing(lineSpacing);
+        tileOptions.setWatermarkSpacing(watermarkSpacing);
+        tileOptions.setRotateAroundOrigin(false);
+        WatermarkDetails watermarkDetails = new WatermarkDetails();
+        watermarkDetails.setTextWatermarkOptions(textWatermarkOptions);
+        watermarkDetails.setTileOptions(tileOptions);
+        List<WatermarkDetails> deatilsList = Arrays.asList(new WatermarkDetails[] { watermarkDetails });
+        options.setWatermarkDetails(deatilsList);
+
+        AddRequest request = new AddRequest(options);
+        AddResult result = watermarkApi.add(request);
+
+        // Act & Assert
+        assertNotNull(result);
+        assertTrue(result.getAppliedWatermarksCount() > 1);
+        CheckIfWatermarkExist(result.getPath(), "Tiled watermark", null);
+    }
+
+    @Test
+    public void TestAddWatermarkToSelectedPages() throws ApiException {
+        // Arrange
+        WatermarkOptions options = new WatermarkOptions();
+        options.setFileInfo(TestFiles.Pdf.ToFileInfo());
+        options.setOutputFolder(DefaultOutputPath);
+        TextWatermarkOptions textWatermarkOptions = new TextWatermarkOptions();
+        textWatermarkOptions.setText("Last page watermark");
+        textWatermarkOptions.setFontFamilyName("Arial");
+        textWatermarkOptions.setFontSize(12d);
+        PagesSetup pagesSetup = new PagesSetup();
+        pagesSetup.setAllPages(false);
+        pagesSetup.setFirstPage(false);
+        pagesSetup.setLastPage(true);
+        pagesSetup.setOddPages(false);
+        pagesSetup.setEvenPages(false);
+        WatermarkDetails watermarkDetails = new WatermarkDetails();
+        watermarkDetails.setTextWatermarkOptions(textWatermarkOptions);
+        watermarkDetails.setPagesSetup(pagesSetup);
+        List<WatermarkDetails> deatilsList = Arrays.asList(new WatermarkDetails[] { watermarkDetails });
+        options.setWatermarkDetails(deatilsList);
+
+        AddRequest request = new AddRequest(options);
+        AddResult result = watermarkApi.add(request);
+
+        // Act & Assert
+        assertEquals(Integer.valueOf(1), result.getAppliedWatermarksCount());
+
+        SearchOptions searchOptions = new SearchOptions();
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(result.getPath());
+        searchOptions.setFileInfo(fileInfo);
+        TextSearchCriteria textSearchCriteria = new TextSearchCriteria();
+        textSearchCriteria.setSearchText("Last page watermark");
+        textSearchCriteria.setUseRegularExpression(false);
+        textSearchCriteria.setSkipUnreadableCharacters(false);
+        searchOptions.setTextSearchCriteria(textSearchCriteria);
+        SearchResult searchResult = watermarkApi.search(new SearchRequest(searchOptions));
+
+        int pagesFound = 0;
+        for (SearchResultItem item : searchResult.getWatermarks()) {
+            if (item.getPageNumber() != null) {
+                assertEquals(Integer.valueOf(2), item.getPageNumber());
+                pagesFound++;
+            }
+        }
+        assertTrue(pagesFound > 0);
     }
 
     @Test
@@ -100,7 +192,7 @@ public class WatermarkAddApiTests extends BaseApiTest {
             watermarkApi.add(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Can't find file located at 'folder\\file-not-exist.pdf'.", ex.getMessage());
+            assertEquals("Can't find file located at 'folder/file-not-exist.pdf'.", ex.getMessage());
         }
     }
 
@@ -125,7 +217,7 @@ public class WatermarkAddApiTests extends BaseApiTest {
             watermarkApi.add(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Password provided for file 'documents\\password-protected.docx' is incorrect.",
+            assertEquals("Password provided for file 'documents/password-protected.docx' is incorrect.",
                     ex.getMessage());
         }
     }
@@ -190,7 +282,7 @@ public class WatermarkAddApiTests extends BaseApiTest {
             watermarkApi.add(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("The specified file 'documents\\sample.zip' has type which is not currently supported.",
+            assertEquals("The specified file 'documents/sample.zip' has type which is not currently supported.",
                     ex.getMessage());
         }
     }

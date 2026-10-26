@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="SearchResultItem.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -71,6 +71,9 @@ public class SearchResultItem {
 
   @SerializedName("possibleWatermarkType")
   private String possibleWatermarkType = null;
+
+  @SerializedName("pageNumber")
+  private Integer pageNumber = null;
 
   public SearchResultItem id(Integer id) {
     this.id = id;
@@ -252,6 +255,24 @@ public class SearchResultItem {
     this.possibleWatermarkType = possibleWatermarkType;
   }
 
+  public SearchResultItem pageNumber(Integer pageNumber) {
+    this.pageNumber = pageNumber;
+    return this;
+  }
+
+   /**
+   * Gets or sets the number of the page the watermark is placed on, starting from 1. Null when the page is unknown.
+   * @return pageNumber
+  **/
+  @ApiModelProperty(value = "Gets or sets the number of the page the watermark is placed on, starting from 1. Null when the page is unknown.")
+  public Integer getPageNumber() {
+    return pageNumber;
+  }
+
+  public void setPageNumber(Integer pageNumber) {
+    this.pageNumber = pageNumber;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -271,12 +292,13 @@ public class SearchResultItem {
         Objects.equals(this.width, searchResultItem.width) &&
         Objects.equals(this.X, searchResultItem.X) &&
         Objects.equals(this.Y, searchResultItem.Y) &&
-        Objects.equals(this.possibleWatermarkType, searchResultItem.possibleWatermarkType);
+        Objects.equals(this.possibleWatermarkType, searchResultItem.possibleWatermarkType) &&
+        Objects.equals(this.pageNumber, searchResultItem.pageNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, text, imageUrl, height, rotateAngle, unitOfMeasurement, width, X, Y, possibleWatermarkType);
+    return Objects.hash(id, text, imageUrl, height, rotateAngle, unitOfMeasurement, width, X, Y, possibleWatermarkType, pageNumber);
   }
 
 
@@ -295,6 +317,7 @@ public class SearchResultItem {
     sb.append("    X: ").append(toIndentedString(X)).append("\n");
     sb.append("    Y: ").append(toIndentedString(Y)).append("\n");
     sb.append("    possibleWatermarkType: ").append(toIndentedString(possibleWatermarkType)).append("\n");
+    sb.append("    pageNumber: ").append(toIndentedString(pageNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

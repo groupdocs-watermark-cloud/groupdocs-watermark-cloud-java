@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="WatermarkDetails.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,8 +34,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.watermark.model.ImageWatermarkOptions;
+import com.groupdocs.cloud.watermark.model.PagesSetup;
 import com.groupdocs.cloud.watermark.model.Position;
 import com.groupdocs.cloud.watermark.model.TextWatermarkOptions;
+import com.groupdocs.cloud.watermark.model.TileOptions;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -56,6 +58,12 @@ public class WatermarkDetails {
 
   @SerializedName("opacity")
   private Double opacity = null;
+
+  @SerializedName("tileOptions")
+  private TileOptions tileOptions = null;
+
+  @SerializedName("pagesSetup")
+  private PagesSetup pagesSetup = null;
 
   public WatermarkDetails textWatermarkOptions(TextWatermarkOptions textWatermarkOptions) {
     this.textWatermarkOptions = textWatermarkOptions;
@@ -129,6 +137,42 @@ public class WatermarkDetails {
     this.opacity = opacity;
   }
 
+  public WatermarkDetails tileOptions(TileOptions tileOptions) {
+    this.tileOptions = tileOptions;
+    return this;
+  }
+
+   /**
+   * Gets or sets the tile options. When set, the watermark is repeated across the whole page.
+   * @return tileOptions
+  **/
+  @ApiModelProperty(value = "Gets or sets the tile options. When set, the watermark is repeated across the whole page.")
+  public TileOptions getTileOptions() {
+    return tileOptions;
+  }
+
+  public void setTileOptions(TileOptions tileOptions) {
+    this.tileOptions = tileOptions;
+  }
+
+  public WatermarkDetails pagesSetup(PagesSetup pagesSetup) {
+    this.pagesSetup = pagesSetup;
+    return this;
+  }
+
+   /**
+   * Gets or sets the pages the watermark should be added to.
+   * @return pagesSetup
+  **/
+  @ApiModelProperty(value = "Gets or sets the pages the watermark should be added to.")
+  public PagesSetup getPagesSetup() {
+    return pagesSetup;
+  }
+
+  public void setPagesSetup(PagesSetup pagesSetup) {
+    this.pagesSetup = pagesSetup;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -142,12 +186,14 @@ public class WatermarkDetails {
     return Objects.equals(this.textWatermarkOptions, watermarkDetails.textWatermarkOptions) &&
         Objects.equals(this.imageWatermarkOptions, watermarkDetails.imageWatermarkOptions) &&
         Objects.equals(this.position, watermarkDetails.position) &&
-        Objects.equals(this.opacity, watermarkDetails.opacity);
+        Objects.equals(this.opacity, watermarkDetails.opacity) &&
+        Objects.equals(this.tileOptions, watermarkDetails.tileOptions) &&
+        Objects.equals(this.pagesSetup, watermarkDetails.pagesSetup);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(textWatermarkOptions, imageWatermarkOptions, position, opacity);
+    return Objects.hash(textWatermarkOptions, imageWatermarkOptions, position, opacity, tileOptions, pagesSetup);
   }
 
 
@@ -160,6 +206,8 @@ public class WatermarkDetails {
     sb.append("    imageWatermarkOptions: ").append(toIndentedString(imageWatermarkOptions)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    opacity: ").append(toIndentedString(opacity)).append("\n");
+    sb.append("    tileOptions: ").append(toIndentedString(tileOptions)).append("\n");
+    sb.append("    pagesSetup: ").append(toIndentedString(pagesSetup)).append("\n");
     sb.append("}");
     return sb.toString();
   }

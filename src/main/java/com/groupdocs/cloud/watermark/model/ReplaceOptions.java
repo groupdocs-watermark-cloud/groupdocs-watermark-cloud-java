@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="ReplaceOptions.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,6 +35,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.watermark.model.FileInfo;
 import com.groupdocs.cloud.watermark.model.ImageSearchCriteria;
+import com.groupdocs.cloud.watermark.model.ObjectsToSearch;
 import com.groupdocs.cloud.watermark.model.ReplaceImageOptions;
 import com.groupdocs.cloud.watermark.model.ReplaceTextOptions;
 import com.groupdocs.cloud.watermark.model.RotateAngleSearchCriteria;

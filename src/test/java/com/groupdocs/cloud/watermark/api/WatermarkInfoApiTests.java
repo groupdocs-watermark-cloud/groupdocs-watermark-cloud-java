@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -80,6 +80,25 @@ public class WatermarkInfoApiTests extends BaseApiTest {
         assertNotNull(result);
         assertEquals("PORTABLE DOCUMENT FORMAT FILE", result.getFileType().getFileFormat().toUpperCase());
         assertEquals(Integer.valueOf(2), result.getPageCount());
+        assertEquals(false, result.getIsEncrypted());
+        assertEquals(2, result.getPages().size());
+        assertEquals(Integer.valueOf(1), result.getPages().get(0).getPageNumber());
+        assertTrue(result.getPages().get(0).getWidth() > 0);
+        assertTrue(result.getPages().get(0).getHeight() > 0);
+    }
+
+    @Test
+    public void InfoApiTest_PasswordProtected() throws ApiException {
+        // Arrange
+        InfoOptions options = new InfoOptions();
+        options.setFileInfo(TestFiles.PasswordProtected.ToFileInfo());
+        GetInfoRequest request = new GetInfoRequest(options);
+
+        // Act & Assert
+        InfoResult result = infoApi.getInfo(request);
+
+        assertNotNull(result);
+        assertEquals(true, result.getIsEncrypted());
     }
 
     @Test
@@ -154,7 +173,7 @@ public class WatermarkInfoApiTests extends BaseApiTest {
             infoApi.getInfo(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Can't find file located at 'folder\\file-not-exist.pdf'.", ex.getMessage());
+            assertEquals("Can't find file located at 'folder/file-not-exist.pdf'.", ex.getMessage());
         }
     }
 
@@ -170,7 +189,7 @@ public class WatermarkInfoApiTests extends BaseApiTest {
             infoApi.getInfo(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("The specified file 'documents\\sample.zip' has type which is not currently supported.", ex.getMessage());
+            assertEquals("The specified file 'documents/sample.zip' has type which is not currently supported.", ex.getMessage());
         }
     }
 }

@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -50,6 +50,7 @@ public class BaseApiTest {
 
     protected WatermarkApi watermarkApi;
     protected InfoApi infoApi;
+    protected PreviewApi previewApi;
     protected StorageApi storageApi;
     protected FileApi fileApi;
     protected FolderApi folderApi;
@@ -59,9 +60,11 @@ public class BaseApiTest {
 
         Configuration configuration = new Configuration(Config.AppSID, Config.AppKey);
         configuration.setApiBaseUrl(Config.ApiBaseUrl);
+        configuration.setTimeout(180000);
 
         watermarkApi = new WatermarkApi(configuration);
         infoApi = new InfoApi(configuration);
+        previewApi = new PreviewApi(configuration);
         storageApi = new StorageApi(configuration);
         fileApi = new FileApi(configuration);
         folderApi = new FolderApi(configuration);
@@ -92,8 +95,10 @@ public class BaseApiTest {
         removeTempFiles();
     }
 
+    protected static String DefaultOutputPath = "watermark";
+
     private void removeTempFiles() throws ApiException {
-        deleteFolderFromStorage("watermark");
+        deleteFolderFromStorage(DefaultOutputPath);
     }
 
     private void deleteFolderFromStorage(String folderName) throws ApiException {

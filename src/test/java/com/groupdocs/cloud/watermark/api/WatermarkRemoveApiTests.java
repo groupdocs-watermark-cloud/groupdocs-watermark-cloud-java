@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,6 +29,7 @@ package com.groupdocs.cloud.watermark.api;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import com.groupdocs.cloud.watermark.client.ApiException;
 import com.groupdocs.cloud.watermark.model.requests.*;
 import com.groupdocs.cloud.watermark.model.*;
@@ -59,6 +60,33 @@ public class WatermarkRemoveApiTests extends BaseApiTest {
     }
 
     @Test
+    public void Remove_Watermark_From_Image_By_Inpainting() throws ApiException {
+        // Arrange
+        RemoveOptions options = new RemoveOptions();
+        options.setFileInfo(TestFiles.Jpg.ToFileInfo());
+        options.setOutputFolder(DefaultOutputPath);
+        Rectangle rectangle = new Rectangle();
+        rectangle.setX(10);
+        rectangle.setY(10);
+        rectangle.setWidth(50);
+        rectangle.setHeight(20);
+        ImageInpaintingOptions imageInpaintingOptions = new ImageInpaintingOptions();
+        imageInpaintingOptions.setRectangles(Arrays.asList(rectangle));
+        imageInpaintingOptions.setMethod("Telea");
+        imageInpaintingOptions.setPatchSize(7);
+        options.setImageInpaintingOptions(imageInpaintingOptions);
+
+        RemoveRequest request = new RemoveRequest(options);
+        RemoveResult result = watermarkApi.remove(request);
+
+        // Act & Assert
+        assertNotNull(result);
+        ObjectExistsRequest existRequest = new ObjectExistsRequest();
+        existRequest.setpath(result.getPath());
+        assertTrue(storageApi.objectExists(existRequest).getExists());
+    }
+
+    @Test
     public void Remove_Watermark_File_Not_Found() {
         // Arrange
         RemoveOptions options = new RemoveOptions();
@@ -77,7 +105,7 @@ public class WatermarkRemoveApiTests extends BaseApiTest {
             watermarkApi.remove(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Can't find file located at 'folder\\file-not-exist.pdf'.", ex.getMessage());
+            assertEquals("Can't find file located at 'folder/file-not-exist.pdf'.", ex.getMessage());
         }
     }
 
@@ -102,7 +130,7 @@ public class WatermarkRemoveApiTests extends BaseApiTest {
             watermarkApi.remove(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Password provided for file 'documents\\password-protected.docx' is incorrect.",
+            assertEquals("Password provided for file 'documents/password-protected.docx' is incorrect.",
                     ex.getMessage());
         }
     }
@@ -126,7 +154,7 @@ public class WatermarkRemoveApiTests extends BaseApiTest {
             watermarkApi.remove(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("The specified file 'documents\\sample.zip' has type which is not currently supported.",
+            assertEquals("The specified file 'documents/sample.zip' has type which is not currently supported.",
                     ex.getMessage());
         }
     }

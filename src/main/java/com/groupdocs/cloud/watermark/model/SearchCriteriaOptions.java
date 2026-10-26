@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="SearchCriteriaOptions.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.watermark.model.ImageSearchCriteria;
+import com.groupdocs.cloud.watermark.model.ObjectsToSearch;
 import com.groupdocs.cloud.watermark.model.RotateAngleSearchCriteria;
 import com.groupdocs.cloud.watermark.model.SizeSearchCriteria;
 import com.groupdocs.cloud.watermark.model.TextFormattingSearchCriteria;
@@ -61,6 +62,9 @@ public class SearchCriteriaOptions {
 
   @SerializedName("textFormattingSearchCriteria")
   private TextFormattingSearchCriteria textFormattingSearchCriteria = null;
+
+  @SerializedName("objectsToSearch")
+  private ObjectsToSearch objectsToSearch = null;
 
   public SearchCriteriaOptions textSearchCriteria(TextSearchCriteria textSearchCriteria) {
     this.textSearchCriteria = textSearchCriteria;
@@ -152,6 +156,24 @@ public class SearchCriteriaOptions {
     this.textFormattingSearchCriteria = textFormattingSearchCriteria;
   }
 
+  public SearchCriteriaOptions objectsToSearch(ObjectsToSearch objectsToSearch) {
+    this.objectsToSearch = objectsToSearch;
+    return this;
+  }
+
+   /**
+   * Gets or sets the document objects to search in. The same value must be passed to /search and /remove so that RemoveIds match.
+   * @return objectsToSearch
+  **/
+  @ApiModelProperty(value = "Gets or sets the document objects to search in. The same value must be passed to /search and /remove so that RemoveIds match.")
+  public ObjectsToSearch getObjectsToSearch() {
+    return objectsToSearch;
+  }
+
+  public void setObjectsToSearch(ObjectsToSearch objectsToSearch) {
+    this.objectsToSearch = objectsToSearch;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -166,12 +188,13 @@ public class SearchCriteriaOptions {
         Objects.equals(this.imageSearchCriteria, searchCriteriaOptions.imageSearchCriteria) &&
         Objects.equals(this.sizeSearchCriteria, searchCriteriaOptions.sizeSearchCriteria) &&
         Objects.equals(this.rotateAngleSearchCriteria, searchCriteriaOptions.rotateAngleSearchCriteria) &&
-        Objects.equals(this.textFormattingSearchCriteria, searchCriteriaOptions.textFormattingSearchCriteria);
+        Objects.equals(this.textFormattingSearchCriteria, searchCriteriaOptions.textFormattingSearchCriteria) &&
+        Objects.equals(this.objectsToSearch, searchCriteriaOptions.objectsToSearch);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(textSearchCriteria, imageSearchCriteria, sizeSearchCriteria, rotateAngleSearchCriteria, textFormattingSearchCriteria);
+    return Objects.hash(textSearchCriteria, imageSearchCriteria, sizeSearchCriteria, rotateAngleSearchCriteria, textFormattingSearchCriteria, objectsToSearch);
   }
 
 
@@ -185,6 +208,7 @@ public class SearchCriteriaOptions {
     sb.append("    sizeSearchCriteria: ").append(toIndentedString(sizeSearchCriteria)).append("\n");
     sb.append("    rotateAngleSearchCriteria: ").append(toIndentedString(rotateAngleSearchCriteria)).append("\n");
     sb.append("    textFormattingSearchCriteria: ").append(toIndentedString(textFormattingSearchCriteria)).append("\n");
+    sb.append("    objectsToSearch: ").append(toIndentedString(objectsToSearch)).append("\n");
     sb.append("}");
     return sb.toString();
   }

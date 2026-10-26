@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,20 +31,20 @@ import java.util.ArrayList;
 
 public class TestFiles {
 
-    public static TestFile PasswordProtected = new TestFile("password-protected.docx", "documents\\");
-    public static TestFile Docx = new TestFile("sample.docx", "documents\\");
-    public static TestFile Zip = new TestFile("sample.zip", "documents\\");
-    public static TestFile Msg = new TestFile("sample.msg", "documents\\");
-    public static TestFile Pdf = new TestFile("sample.pdf", "documents\\");
-    public static TestFile Pptx = new TestFile("sample.pptx", "documents\\");
-    public static TestFile Xlsx = new TestFile("sample.xlsx", "documents\\");
-    public static TestFile Visio = new TestFile("sample.vsdx", "documents\\");
-    public static TestFile MsgWithAttachments = new TestFile("samplewithattachments.msg", "documents\\");
-    public static TestFile Jpg = new TestFile("sample.jpg", "images\\");
-    public static TestFile Tiff = new TestFile("multipage_tiff_sample.tif", "images\\");
-    public static TestFile PdfWithWatermarks = new TestFile("sample.pdf", "with_watermarks\\");
-    public static TestFile SampleWatermarkTransparent = new TestFile("sample_watermark.png", "watermark_images\\");
-    public static TestFile NotExist = new TestFile("folder\\file-not-exist.pdf", "");
+    public static TestFile PasswordProtected = new TestFile("password-protected.docx", "documents/");
+    public static TestFile Docx = new TestFile("sample.docx", "documents/");
+    public static TestFile Zip = new TestFile("sample.zip", "documents/");
+    public static TestFile Msg = new TestFile("sample.msg", "documents/");
+    public static TestFile Pdf = new TestFile("sample.pdf", "documents/");
+    public static TestFile Pptx = new TestFile("sample.pptx", "documents/");
+    public static TestFile Xlsx = new TestFile("sample.xlsx", "documents/");
+    public static TestFile Visio = new TestFile("sample.vsdx", "documents/");
+    public static TestFile MsgWithAttachments = new TestFile("samplewithattachments.msg", "documents/");
+    public static TestFile Jpg = new TestFile("sample.jpg", "images/");
+    public static TestFile Tiff = new TestFile("multipage_tiff_sample.tif", "images/");
+    public static TestFile PdfWithWatermarks = new TestFile("sample.pdf", "with_watermarks/");
+    public static TestFile SampleWatermarkTransparent = new TestFile("sample_watermark.png", "watermark_images/");
+    public static TestFile NotExist = new TestFile("folder/file-not-exist.pdf", "");
 
     static {
         PasswordProtected.setPassword("password");

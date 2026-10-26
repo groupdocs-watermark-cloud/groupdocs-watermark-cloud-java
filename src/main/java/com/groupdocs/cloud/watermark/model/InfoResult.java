@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="InfoResult.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,9 +34,12 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.watermark.model.FileType;
+import com.groupdocs.cloud.watermark.model.PageInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Info result.
@@ -51,6 +54,12 @@ public class InfoResult {
 
   @SerializedName("pageCount")
   private Integer pageCount = null;
+
+  @SerializedName("isEncrypted")
+  private Boolean isEncrypted = null;
+
+  @SerializedName("pages")
+  private List<PageInfo> pages = null;
 
   public InfoResult fileType(FileType fileType) {
     this.fileType = fileType;
@@ -106,6 +115,50 @@ public class InfoResult {
     this.pageCount = pageCount;
   }
 
+  public InfoResult isEncrypted(Boolean isEncrypted) {
+    this.isEncrypted = isEncrypted;
+    return this;
+  }
+
+   /**
+   * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
+   * @return isEncrypted
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets a value indicating whether the document is encrypted and requires a password to open.")
+  public Boolean getIsEncrypted() {
+    return isEncrypted;
+  }
+
+  public void setIsEncrypted(Boolean isEncrypted) {
+    this.isEncrypted = isEncrypted;
+  }
+
+  public InfoResult pages(List<PageInfo> pages) {
+    this.pages = pages;
+    return this;
+  }
+
+  public InfoResult addPagesItem(PageInfo pagesItem) {
+    if (this.pages == null) {
+      this.pages = new ArrayList<PageInfo>();
+    }
+    this.pages.add(pagesItem);
+    return this;
+  }
+
+   /**
+   * Gets or sets the descriptions of the document pages.
+   * @return pages
+  **/
+  @ApiModelProperty(value = "Gets or sets the descriptions of the document pages.")
+  public List<PageInfo> getPages() {
+    return pages;
+  }
+
+  public void setPages(List<PageInfo> pages) {
+    this.pages = pages;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -118,12 +171,14 @@ public class InfoResult {
     InfoResult infoResult = (InfoResult) o;
     return Objects.equals(this.fileType, infoResult.fileType) &&
         Objects.equals(this.size, infoResult.size) &&
-        Objects.equals(this.pageCount, infoResult.pageCount);
+        Objects.equals(this.pageCount, infoResult.pageCount) &&
+        Objects.equals(this.isEncrypted, infoResult.isEncrypted) &&
+        Objects.equals(this.pages, infoResult.pages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileType, size, pageCount);
+    return Objects.hash(fileType, size, pageCount, isEncrypted, pages);
   }
 
 
@@ -135,6 +190,8 @@ public class InfoResult {
     sb.append("    fileType: ").append(toIndentedString(fileType)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    pageCount: ").append(toIndentedString(pageCount)).append("\n");
+    sb.append("    isEncrypted: ").append(toIndentedString(isEncrypted)).append("\n");
+    sb.append("    pages: ").append(toIndentedString(pages)).append("\n");
     sb.append("}");
     return sb.toString();
   }

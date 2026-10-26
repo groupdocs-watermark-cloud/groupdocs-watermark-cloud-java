@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="PdfOptions.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -52,6 +52,9 @@ public class PdfOptions {
 
   @SerializedName("rasterizeImageFormat")
   private String rasterizeImageFormat = null;
+
+  @SerializedName("rasterizeResolution")
+  private Integer rasterizeResolution = null;
 
   @SerializedName("pages")
   private List<Integer> pages = null;
@@ -110,6 +113,24 @@ public class PdfOptions {
     this.rasterizeImageFormat = rasterizeImageFormat;
   }
 
+  public PdfOptions rasterizeResolution(Integer rasterizeResolution) {
+    this.rasterizeResolution = rasterizeResolution;
+    return this;
+  }
+
+   /**
+   * Gets or sets the resolution of rasterized pages in DPI, from 1 to 600. Default is 150.
+   * @return rasterizeResolution
+  **/
+  @ApiModelProperty(value = "Gets or sets the resolution of rasterized pages in DPI, from 1 to 600. Default is 150.")
+  public Integer getRasterizeResolution() {
+    return rasterizeResolution;
+  }
+
+  public void setRasterizeResolution(Integer rasterizeResolution) {
+    this.rasterizeResolution = rasterizeResolution;
+  }
+
   public PdfOptions pages(List<Integer> pages) {
     this.pages = pages;
     return this;
@@ -149,12 +170,13 @@ public class PdfOptions {
     return Objects.equals(this.printOnlyAnnotationWatermarks, pdfOptions.printOnlyAnnotationWatermarks) &&
         Objects.equals(this.rasterize, pdfOptions.rasterize) &&
         Objects.equals(this.rasterizeImageFormat, pdfOptions.rasterizeImageFormat) &&
+        Objects.equals(this.rasterizeResolution, pdfOptions.rasterizeResolution) &&
         Objects.equals(this.pages, pdfOptions.pages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(printOnlyAnnotationWatermarks, rasterize, rasterizeImageFormat, pages);
+    return Objects.hash(printOnlyAnnotationWatermarks, rasterize, rasterizeImageFormat, rasterizeResolution, pages);
   }
 
 
@@ -166,6 +188,7 @@ public class PdfOptions {
     sb.append("    printOnlyAnnotationWatermarks: ").append(toIndentedString(printOnlyAnnotationWatermarks)).append("\n");
     sb.append("    rasterize: ").append(toIndentedString(rasterize)).append("\n");
     sb.append("    rasterizeImageFormat: ").append(toIndentedString(rasterizeImageFormat)).append("\n");
+    sb.append("    rasterizeResolution: ").append(toIndentedString(rasterizeResolution)).append("\n");
     sb.append("    pages: ").append(toIndentedString(pages)).append("\n");
     sb.append("}");
     return sb.toString();

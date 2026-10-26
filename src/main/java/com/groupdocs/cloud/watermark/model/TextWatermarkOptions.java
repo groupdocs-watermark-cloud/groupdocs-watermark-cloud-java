@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="TextWatermarkOptions.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.watermark.model.Color;
+import com.groupdocs.cloud.watermark.model.Thickness;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -63,6 +64,9 @@ public class TextWatermarkOptions {
 
   @SerializedName("textAlignment")
   private String textAlignment = null;
+
+  @SerializedName("padding")
+  private Thickness padding = null;
 
   public TextWatermarkOptions text(String text) {
     this.text = text;
@@ -190,6 +194,24 @@ public class TextWatermarkOptions {
     this.textAlignment = textAlignment;
   }
 
+  public TextWatermarkOptions padding(Thickness padding) {
+    this.padding = padding;
+    return this;
+  }
+
+   /**
+   * Gets or sets the text padding.
+   * @return padding
+  **/
+  @ApiModelProperty(value = "Gets or sets the text padding.")
+  public Thickness getPadding() {
+    return padding;
+  }
+
+  public void setPadding(Thickness padding) {
+    this.padding = padding;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -206,12 +228,13 @@ public class TextWatermarkOptions {
         Objects.equals(this.fontStyle, textWatermarkOptions.fontStyle) &&
         Objects.equals(this.foregroundColor, textWatermarkOptions.foregroundColor) &&
         Objects.equals(this.backgroundColor, textWatermarkOptions.backgroundColor) &&
-        Objects.equals(this.textAlignment, textWatermarkOptions.textAlignment);
+        Objects.equals(this.textAlignment, textWatermarkOptions.textAlignment) &&
+        Objects.equals(this.padding, textWatermarkOptions.padding);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, fontFamilyName, fontSize, fontStyle, foregroundColor, backgroundColor, textAlignment);
+    return Objects.hash(text, fontFamilyName, fontSize, fontStyle, foregroundColor, backgroundColor, textAlignment, padding);
   }
 
 
@@ -227,6 +250,7 @@ public class TextWatermarkOptions {
     sb.append("    foregroundColor: ").append(toIndentedString(foregroundColor)).append("\n");
     sb.append("    backgroundColor: ").append(toIndentedString(backgroundColor)).append("\n");
     sb.append("    textAlignment: ").append(toIndentedString(textAlignment)).append("\n");
+    sb.append("    padding: ").append(toIndentedString(padding)).append("\n");
     sb.append("}");
     return sb.toString();
   }

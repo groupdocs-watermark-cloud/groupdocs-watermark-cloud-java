@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="RemoveOptions.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,7 +34,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.watermark.model.FileInfo;
+import com.groupdocs.cloud.watermark.model.ImageInpaintingOptions;
 import com.groupdocs.cloud.watermark.model.ImageSearchCriteria;
+import com.groupdocs.cloud.watermark.model.ObjectsToSearch;
 import com.groupdocs.cloud.watermark.model.RotateAngleSearchCriteria;
 import com.groupdocs.cloud.watermark.model.SearchCriteriaOptions;
 import com.groupdocs.cloud.watermark.model.SizeSearchCriteria;
@@ -59,6 +61,9 @@ public class RemoveOptions extends SearchCriteriaOptions {
 
   @SerializedName("removeIds")
   private List<Integer> removeIds = null;
+
+  @SerializedName("imageInpaintingOptions")
+  private ImageInpaintingOptions imageInpaintingOptions = null;
 
   public RemoveOptions fileInfo(FileInfo fileInfo) {
     this.fileInfo = fileInfo;
@@ -122,6 +127,24 @@ public class RemoveOptions extends SearchCriteriaOptions {
     this.removeIds = removeIds;
   }
 
+  public RemoveOptions imageInpaintingOptions(ImageInpaintingOptions imageInpaintingOptions) {
+    this.imageInpaintingOptions = imageInpaintingOptions;
+    return this;
+  }
+
+   /**
+   * Gets or sets the image inpainting options. Use it to remove a watermark from a raster image by specifying its region. Can be used instead of search criteria or together with them.
+   * @return imageInpaintingOptions
+  **/
+  @ApiModelProperty(value = "Gets or sets the image inpainting options. Use it to remove a watermark from a raster image by specifying its region. Can be used instead of search criteria or together with them.")
+  public ImageInpaintingOptions getImageInpaintingOptions() {
+    return imageInpaintingOptions;
+  }
+
+  public void setImageInpaintingOptions(ImageInpaintingOptions imageInpaintingOptions) {
+    this.imageInpaintingOptions = imageInpaintingOptions;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -135,12 +158,13 @@ public class RemoveOptions extends SearchCriteriaOptions {
     return Objects.equals(this.fileInfo, removeOptions.fileInfo) &&
         Objects.equals(this.outputFolder, removeOptions.outputFolder) &&
         Objects.equals(this.removeIds, removeOptions.removeIds) &&
+        Objects.equals(this.imageInpaintingOptions, removeOptions.imageInpaintingOptions) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, outputFolder, removeIds, super.hashCode());
+    return Objects.hash(fileInfo, outputFolder, removeIds, imageInpaintingOptions, super.hashCode());
   }
 
 
@@ -152,6 +176,7 @@ public class RemoveOptions extends SearchCriteriaOptions {
     sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
     sb.append("    outputFolder: ").append(toIndentedString(outputFolder)).append("\n");
     sb.append("    removeIds: ").append(toIndentedString(removeIds)).append("\n");
+    sb.append("    imageInpaintingOptions: ").append(toIndentedString(imageInpaintingOptions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

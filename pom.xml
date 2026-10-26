@@ -5,9 +5,9 @@
     <artifactId>groupdocs-watermark-cloud</artifactId>
     <packaging>jar</packaging>
     <name>groupdocs-watermark-cloud</name>
-    <version>23.8</version>
+    <version>26.10</version>
     <url>https://github.com/groupdocs-watermark-cloud/groupdocs-watermark-cloud-java</url>
-    <description>Java library for communicating with the GroupDocs.Watermark Cloud API</description>
+    <description>Java library for communicating with the GroupDocs.Watermark Cloud API. GroupDocs.Watermark Cloud is a REST API for managing watermarks in documents and images. Add text and image watermarks, search for existing watermarks by text, image, size, rotation angle or formatting, replace or remove watermarks, including ones added by third-party software, erase watermarks from raster images by inpainting, and render document page previews. Microsoft Word, Excel, PowerPoint, Visio, PDF, email messages, raster images, multi-page TIFF and animated GIF formats are supported.</description>
     <scm>
         <connection>scm:git:git@github.com:groupdocs-watermark-cloud/groupdocs-watermark-cloud-java.git</connection>
         <developerConnection>scm:git:git@github.com:groupdocs-watermark-cloud/groupdocs-watermark-cloud-java.git</developerConnection>
@@ -118,7 +118,7 @@
                 <artifactId>maven-s3-wagon</artifactId>
                 <version>1.3.3</version>
             </extension>
-        </extensions>        
+        </extensions>
     </build>        
 
     <profiles>

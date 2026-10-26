@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,6 +29,7 @@ package com.groupdocs.cloud.watermark.api;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import com.groupdocs.cloud.watermark.client.ApiException;
 import com.groupdocs.cloud.watermark.model.requests.*;
 import com.groupdocs.cloud.watermark.model.*;
@@ -68,6 +69,49 @@ public class WatermarkSearchApiTests extends BaseApiTest {
     }
 
     @Test
+    public void Search_Watermark_Text_Options() throws ApiException {
+        // Arrange
+        SearchOptions options = new SearchOptions();
+        options.setFileInfo(TestFiles.PdfWithWatermarks.ToFileInfo());
+        TextSearchCriteria textSearchCriteria = new TextSearchCriteria();
+        textSearchCriteria.setSearchText("^watermark\\s+TEXT$");
+        textSearchCriteria.setMatchCase(false);
+        textSearchCriteria.setUseRegularExpression(true);
+        textSearchCriteria.setSkipUnreadableCharacters(false);
+        textSearchCriteria.setPages(Arrays.asList(1));
+        options.setTextSearchCriteria(textSearchCriteria);
+
+        SearchRequest request = new SearchRequest(options);
+        SearchResult result = watermarkApi.search(request);
+
+        // Act & Assert
+        assertFalse(result.getWatermarks().isEmpty());
+        for (SearchResultItem item : result.getWatermarks()) {
+            assertEquals(Integer.valueOf(1), item.getPageNumber());
+        }
+        assertEquals("Watermark text", result.getWatermarks().get(0).getText());
+    }
+
+    @Test
+    public void Search_Watermark_Match_Case() throws ApiException {
+        // Arrange
+        SearchOptions options = new SearchOptions();
+        options.setFileInfo(TestFiles.PdfWithWatermarks.ToFileInfo());
+        TextSearchCriteria textSearchCriteria = new TextSearchCriteria();
+        textSearchCriteria.setSearchText("WATERMARK TEXT");
+        textSearchCriteria.setMatchCase(true);
+        textSearchCriteria.setUseRegularExpression(false);
+        textSearchCriteria.setSkipUnreadableCharacters(false);
+        options.setTextSearchCriteria(textSearchCriteria);
+
+        SearchRequest request = new SearchRequest(options);
+        SearchResult result = watermarkApi.search(request);
+
+        // Act & Assert
+        assertTrue(result.getWatermarks().isEmpty());
+    }
+
+    @Test
     public void Search_Watermark_File_Not_Found() {
         // Arrange
         SearchOptions options = new SearchOptions();
@@ -86,7 +130,7 @@ public class WatermarkSearchApiTests extends BaseApiTest {
             watermarkApi.search(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Can't find file located at 'folder\\file-not-exist.pdf'.", ex.getMessage());
+            assertEquals("Can't find file located at 'folder/file-not-exist.pdf'.", ex.getMessage());
         }
     }
 
@@ -112,7 +156,7 @@ public class WatermarkSearchApiTests extends BaseApiTest {
             watermarkApi.search(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Password provided for file 'documents\\password-protected.docx' is incorrect.",
+            assertEquals("Password provided for file 'documents/password-protected.docx' is incorrect.",
                     ex.getMessage());
         }
     }
@@ -138,7 +182,7 @@ public class WatermarkSearchApiTests extends BaseApiTest {
             watermarkApi.search(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("The specified file 'documents\\sample.zip' has type which is not currently supported.",
+            assertEquals("The specified file 'documents/sample.zip' has type which is not currently supported.",
                     ex.getMessage());
         }
     }

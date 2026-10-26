@@ -1,27 +1,14 @@
 # GroupDocs.Watermark Cloud SDK for Java
-This repository contains GroupDocs.Watermark Cloud SDK for Java source code. This SDK allows you to work with GroupDocs.Watermark Cloud REST APIs in your Java applications.
+
+[GroupDocs.Watermark Cloud API](https://products.groupdocs.cloud/watermark/java/) is a REST API for managing watermarks in documents and images from your Java applications. Add text and image watermarks, search for existing watermarks by text, image, size, rotation angle or formatting, replace or remove watermarks, including ones added by third-party software, erase watermarks from raster images by inpainting, and render document page previews. Microsoft Word, Excel, PowerPoint, Visio, PDF, email messages, raster images, multi-page TIFF and animated GIF formats are supported. Additional file and folder operations streamline cloud storage management.
 
 ## Requirements
 
-Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
+* Java SE Development Kit 8
 
 ## Installation
 
-To install the API client library to your local Maven repository, execute:
-
-```shell
-mvn install
-```
-
-To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
-
-```shell
-mvn deploy
-```
-
-Refer to the [official documentation](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html) for more information.
-
-### Maven users
+### Maven
 
 Add following repository and dependency to your project's POM
 
@@ -37,66 +24,118 @@ Add following repository and dependency to your project's POM
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-watermark-cloud</artifactId>
-    <version>23.8</version>
+    <version>26.10</version>
     <scope>compile</scope>
 </dependency>
 ```
 
-### Others
+### Gradle
 
-At first generate the JAR by executing:
+Add following repository and dependency to your build.gradle:
 
-    mvn package
-
-Then manually install the following JARs:
-
-* target/groupdocs-watermark-cloud-23.8.jar
-* target/lib/*.jar
-
-## Getting Started
-
-Please follow the [installation](#installation) instruction and execute the following Java code:
-
-```java
-import com.groupdocs.cloud.watermark.client.*;
-import com.groupdocs.cloud.watermark.model.*;
-import com.groupdocs.cloud.watermark.api.WatermarkApi;
-
-import java.util.*;
-
-public class ApiExample {
-
-    public static void main(String[] args) {
-        //TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).
-        String appSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
-        String appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-
-        Configuration configuration = new Configuration(appSid, appKey);
-        
-        WatermarkApi watermarkApi = new WatermarkApi(configuration);
-
-        try {
-            FormatsResult response = watermarkApi.getSupportedFileFormats();
-            for (Format format : response.getFormats()) {
-                System.out.println(format.getFileFormat());
-            }
-        } catch (ApiException e) {
-            System.err.println("Failed to get supported file formats");
-            e.printStackTrace();
-        }
+```javascript
+repositories {
+    maven {
+        url "https://repository.groupdocs.cloud/repo/"
     }
+}
+
+...
+dependencies {
+    ...
+    implementation 'com.groupdocs:groupdocs-watermark-cloud:26.10'
 }
 ```
 
+## Getting Started
+
+* Please follow the [installation](#installation) instruction
+* Get your AppSID and AppKey at [Dashboard](https://dashboard.groupdocs.cloud) and use them in your code
+* Build and execute
+* Explore more samples at [GitHub](https://github.com/groupdocs-watermark-cloud/groupdocs-watermark-cloud-java-samples)
+
+This example demonstrates how to add a text watermark to a Word document stored in your cloud storage:
+
+```java
+import java.util.Arrays;
+import com.groupdocs.cloud.watermark.api.*;
+import com.groupdocs.cloud.watermark.client.*;
+import com.groupdocs.cloud.watermark.model.*;
+import com.groupdocs.cloud.watermark.model.requests.*;
+
+/**
+ * This example demonstrates how to add a text watermark to a document.
+ */
+public class AddTextWatermark {
+
+	public static void main(String[] args) {
+
+		// Get your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).
+		Configuration configuration = new Configuration("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		WatermarkApi apiInstance = new WatermarkApi(configuration);
+
+		try {
+			FileInfo fileInfo = new FileInfo();
+			fileInfo.setFilePath("documents/sample.docx");
+
+			Color color = new Color();
+			color.setName("Red");
+
+			Thickness padding = new Thickness();
+			padding.setLeft(10d);
+			padding.setRight(10d);
+			padding.setTop(5d);
+			padding.setBottom(5d);
+
+			TextWatermarkOptions textWatermarkOptions = new TextWatermarkOptions();
+			textWatermarkOptions.setText("Confidential");
+			textWatermarkOptions.setFontFamilyName("Arial");
+			textWatermarkOptions.setFontSize(36d);
+			textWatermarkOptions.setForegroundColor(color);
+			textWatermarkOptions.setPadding(padding);
+
+			Position position = new Position();
+			position.setHorizontalAlignment("Center");
+			position.setVerticalAlignment("Center");
+			position.setRotateAngle(45d);
+
+			WatermarkDetails watermarkDetails = new WatermarkDetails();
+			watermarkDetails.setTextWatermarkOptions(textWatermarkOptions);
+			watermarkDetails.setPosition(position);
+			watermarkDetails.setOpacity(0.5d);
+
+			WatermarkOptions options = new WatermarkOptions();
+			options.setFileInfo(fileInfo);
+			options.setWatermarkDetails(Arrays.asList(watermarkDetails));
+
+			AddRequest request = new AddRequest(options);
+
+			AddResult response = apiInstance.add(request);
+
+			System.out.println("Output file path: " + response.getPath());
+
+		} catch (ApiException e) {
+
+			System.err.println("Exception while calling api:");
+			e.printStackTrace();
+		}
+	}
+}
+```
+
+
 ## Licensing
+
 All GroupDocs.Watermark Cloud SDKs are licensed under [MIT License](LICENSE).
 
 ## Resources
-+ [**Website**](https://www.groupdocs.cloud)
-+ [**Product Home**](https://products.groupdocs.cloud/watermark)
-+ [**Documentation**](https://docs.groupdocs.cloud/display/watermarkcloud/Home)
-+ [**Free Support Forum**](https://forum.groupdocs.cloud/c/watermark)
-+ [**Blog**](https://blog.groupdocs.cloud/category/watermark)
+
+* [**Website**](https://www.groupdocs.cloud)
+* [**Product Home**](https://products.groupdocs.cloud/watermark)
+* [**Documentation**](https://docs.groupdocs.cloud/watermark/)
+* [**Free Support Forum**](https://forum.groupdocs.cloud/c/watermark)
+* [**Blog**](https://blog.groupdocs.cloud/category/watermark/)
 
 ## Contact Us
+
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/watermark).

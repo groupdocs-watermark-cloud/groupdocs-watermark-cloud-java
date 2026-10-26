@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -87,7 +87,7 @@ public class WatermarkReplaceApiTests extends BaseApiTest {
             watermarkApi.replace(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Can't find file located at 'folder\\file-not-exist.pdf'.", ex.getMessage());
+            assertEquals("Can't find file located at 'folder/file-not-exist.pdf'.", ex.getMessage());
         }
     }
 
@@ -118,7 +118,7 @@ public class WatermarkReplaceApiTests extends BaseApiTest {
             watermarkApi.replace(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Password provided for file 'documents\\password-protected.docx' is incorrect.",
+            assertEquals("Password provided for file 'documents/password-protected.docx' is incorrect.",
                     ex.getMessage());
         }
     }
@@ -148,7 +148,7 @@ public class WatermarkReplaceApiTests extends BaseApiTest {
             watermarkApi.replace(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("The specified file 'documents\\sample.zip' has type which is not currently supported.",
+            assertEquals("The specified file 'documents/sample.zip' has type which is not currently supported.",
                     ex.getMessage());
         }
     }

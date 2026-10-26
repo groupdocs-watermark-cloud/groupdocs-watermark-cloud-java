@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="SearchOptions.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -59,9 +59,6 @@ public class SearchOptions extends SearchCriteriaOptions {
   @SerializedName("saveFoundImages")
   private Boolean saveFoundImages = null;
 
-  @SerializedName("objectsToSearch")
-  private ObjectsToSearch objectsToSearch = null;
-
   public SearchOptions fileInfo(FileInfo fileInfo) {
     this.fileInfo = fileInfo;
     return this;
@@ -116,24 +113,6 @@ public class SearchOptions extends SearchCriteriaOptions {
     this.saveFoundImages = saveFoundImages;
   }
 
-  public SearchOptions objectsToSearch(ObjectsToSearch objectsToSearch) {
-    this.objectsToSearch = objectsToSearch;
-    return this;
-  }
-
-   /**
-   * Gets or sets the objects to search.
-   * @return objectsToSearch
-  **/
-  @ApiModelProperty(value = "Gets or sets the objects to search.")
-  public ObjectsToSearch getObjectsToSearch() {
-    return objectsToSearch;
-  }
-
-  public void setObjectsToSearch(ObjectsToSearch objectsToSearch) {
-    this.objectsToSearch = objectsToSearch;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -147,13 +126,12 @@ public class SearchOptions extends SearchCriteriaOptions {
     return Objects.equals(this.fileInfo, searchOptions.fileInfo) &&
         Objects.equals(this.outputFolder, searchOptions.outputFolder) &&
         Objects.equals(this.saveFoundImages, searchOptions.saveFoundImages) &&
-        Objects.equals(this.objectsToSearch, searchOptions.objectsToSearch) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, outputFolder, saveFoundImages, objectsToSearch, super.hashCode());
+    return Objects.hash(fileInfo, outputFolder, saveFoundImages, super.hashCode());
   }
 
 
@@ -165,7 +143,6 @@ public class SearchOptions extends SearchCriteriaOptions {
     sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
     sb.append("    outputFolder: ").append(toIndentedString(outputFolder)).append("\n");
     sb.append("    saveFoundImages: ").append(toIndentedString(saveFoundImages)).append("\n");
-    sb.append("    objectsToSearch: ").append(toIndentedString(objectsToSearch)).append("\n");
     sb.append("}");
     return sb.toString();
   }

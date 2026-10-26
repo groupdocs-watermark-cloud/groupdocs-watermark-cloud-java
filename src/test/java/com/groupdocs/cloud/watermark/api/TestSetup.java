@@ -11,10 +11,12 @@ import org.junit.runners.Suite.SuiteClasses;
     StorageApiTests.class,
     FolderApiTests.class,
     FileApiTests.class,
+    WatermarkInfoApiTests.class,
     WatermarkAddApiTests.class,
     WatermarkRemoveApiTests.class,
     WatermarkReplaceApiTests.class,
-    WatermarkSearchApiTests.class
+    WatermarkSearchApiTests.class,
+    WatermarkPreviewApiTests.class
 })
 
 public class TestSetup {

@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="TextSearchCriteria.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,6 +36,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for text search criteria options.
@@ -44,6 +46,18 @@ import java.io.IOException;
 public class TextSearchCriteria {
   @SerializedName("searchText")
   private String searchText = null;
+
+  @SerializedName("matchCase")
+  private Boolean matchCase = null;
+
+  @SerializedName("useRegularExpression")
+  private Boolean useRegularExpression = null;
+
+  @SerializedName("skipUnreadableCharacters")
+  private Boolean skipUnreadableCharacters = null;
+
+  @SerializedName("pages")
+  private List<Integer> pages = null;
 
   public TextSearchCriteria searchText(String searchText) {
     this.searchText = searchText;
@@ -63,6 +77,86 @@ public class TextSearchCriteria {
     this.searchText = searchText;
   }
 
+  public TextSearchCriteria matchCase(Boolean matchCase) {
+    this.matchCase = matchCase;
+    return this;
+  }
+
+   /**
+   * Gets or sets a value indicating whether the search is case-sensitive. Default is true.
+   * @return matchCase
+  **/
+  @ApiModelProperty(value = "Gets or sets a value indicating whether the search is case-sensitive. Default is true.")
+  public Boolean getMatchCase() {
+    return matchCase;
+  }
+
+  public void setMatchCase(Boolean matchCase) {
+    this.matchCase = matchCase;
+  }
+
+  public TextSearchCriteria useRegularExpression(Boolean useRegularExpression) {
+    this.useRegularExpression = useRegularExpression;
+    return this;
+  }
+
+   /**
+   * Gets or sets a value indicating whether SearchText is a .NET regular expression. Default is false.
+   * @return useRegularExpression
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets a value indicating whether SearchText is a .NET regular expression. Default is false.")
+  public Boolean getUseRegularExpression() {
+    return useRegularExpression;
+  }
+
+  public void setUseRegularExpression(Boolean useRegularExpression) {
+    this.useRegularExpression = useRegularExpression;
+  }
+
+  public TextSearchCriteria skipUnreadableCharacters(Boolean skipUnreadableCharacters) {
+    this.skipUnreadableCharacters = skipUnreadableCharacters;
+    return this;
+  }
+
+   /**
+   * Gets or sets a value indicating whether unreadable characters are skipped when comparing text. Default is false.
+   * @return skipUnreadableCharacters
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets a value indicating whether unreadable characters are skipped when comparing text. Default is false.")
+  public Boolean getSkipUnreadableCharacters() {
+    return skipUnreadableCharacters;
+  }
+
+  public void setSkipUnreadableCharacters(Boolean skipUnreadableCharacters) {
+    this.skipUnreadableCharacters = skipUnreadableCharacters;
+  }
+
+  public TextSearchCriteria pages(List<Integer> pages) {
+    this.pages = pages;
+    return this;
+  }
+
+  public TextSearchCriteria addPagesItem(Integer pagesItem) {
+    if (this.pages == null) {
+      this.pages = new ArrayList<Integer>();
+    }
+    this.pages.add(pagesItem);
+    return this;
+  }
+
+   /**
+   * Gets or sets the page numbers to search on, starting from 1. When empty, all pages are searched.
+   * @return pages
+  **/
+  @ApiModelProperty(value = "Gets or sets the page numbers to search on, starting from 1. When empty, all pages are searched.")
+  public List<Integer> getPages() {
+    return pages;
+  }
+
+  public void setPages(List<Integer> pages) {
+    this.pages = pages;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -73,12 +167,16 @@ public class TextSearchCriteria {
       return false;
     }
     TextSearchCriteria textSearchCriteria = (TextSearchCriteria) o;
-    return Objects.equals(this.searchText, textSearchCriteria.searchText);
+    return Objects.equals(this.searchText, textSearchCriteria.searchText) &&
+        Objects.equals(this.matchCase, textSearchCriteria.matchCase) &&
+        Objects.equals(this.useRegularExpression, textSearchCriteria.useRegularExpression) &&
+        Objects.equals(this.skipUnreadableCharacters, textSearchCriteria.skipUnreadableCharacters) &&
+        Objects.equals(this.pages, textSearchCriteria.pages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(searchText);
+    return Objects.hash(searchText, matchCase, useRegularExpression, skipUnreadableCharacters, pages);
   }
 
 
@@ -88,6 +186,10 @@ public class TextSearchCriteria {
     sb.append("class TextSearchCriteria {\n");
     
     sb.append("    searchText: ").append(toIndentedString(searchText)).append("\n");
+    sb.append("    matchCase: ").append(toIndentedString(matchCase)).append("\n");
+    sb.append("    useRegularExpression: ").append(toIndentedString(useRegularExpression)).append("\n");
+    sb.append("    skipUnreadableCharacters: ").append(toIndentedString(skipUnreadableCharacters)).append("\n");
+    sb.append("    pages: ").append(toIndentedString(pages)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="ImageSearchCriteria.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,6 +37,8 @@ import com.groupdocs.cloud.watermark.model.FileInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for image search criteria options.
@@ -45,6 +47,9 @@ import java.io.IOException;
 public class ImageSearchCriteria {
   @SerializedName("imageFileInfo")
   private FileInfo imageFileInfo = null;
+
+  @SerializedName("pages")
+  private List<Integer> pages = null;
 
   public ImageSearchCriteria imageFileInfo(FileInfo imageFileInfo) {
     this.imageFileInfo = imageFileInfo;
@@ -64,6 +69,32 @@ public class ImageSearchCriteria {
     this.imageFileInfo = imageFileInfo;
   }
 
+  public ImageSearchCriteria pages(List<Integer> pages) {
+    this.pages = pages;
+    return this;
+  }
+
+  public ImageSearchCriteria addPagesItem(Integer pagesItem) {
+    if (this.pages == null) {
+      this.pages = new ArrayList<Integer>();
+    }
+    this.pages.add(pagesItem);
+    return this;
+  }
+
+   /**
+   * Gets or sets the page numbers to search on, starting from 1. When empty, all pages are searched.
+   * @return pages
+  **/
+  @ApiModelProperty(value = "Gets or sets the page numbers to search on, starting from 1. When empty, all pages are searched.")
+  public List<Integer> getPages() {
+    return pages;
+  }
+
+  public void setPages(List<Integer> pages) {
+    this.pages = pages;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -74,12 +105,13 @@ public class ImageSearchCriteria {
       return false;
     }
     ImageSearchCriteria imageSearchCriteria = (ImageSearchCriteria) o;
-    return Objects.equals(this.imageFileInfo, imageSearchCriteria.imageFileInfo);
+    return Objects.equals(this.imageFileInfo, imageSearchCriteria.imageFileInfo) &&
+        Objects.equals(this.pages, imageSearchCriteria.pages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageFileInfo);
+    return Objects.hash(imageFileInfo, pages);
   }
 
 
@@ -89,6 +121,7 @@ public class ImageSearchCriteria {
     sb.append("class ImageSearchCriteria {\n");
     
     sb.append("    imageFileInfo: ").append(toIndentedString(imageFileInfo)).append("\n");
+    sb.append("    pages: ").append(toIndentedString(pages)).append("\n");
     sb.append("}");
     return sb.toString();
   }

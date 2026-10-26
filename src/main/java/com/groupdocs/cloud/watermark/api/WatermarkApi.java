@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="WatermarkApi.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -145,11 +145,11 @@ public class WatermarkApi {
      * Add watermarks to a document of any supported type.
      * 
      * @param request The request model
-     * @return WatermarkResult
+     * @return AddResult
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public WatermarkResult add(AddRequest request) throws ApiException {
-        ApiResponse<WatermarkResult> resp = addWithHttpInfo(request);
+    public AddResult add(AddRequest request) throws ApiException {
+        ApiResponse<AddResult> resp = addWithHttpInfo(request);
         return resp.getData();
     }
 
@@ -157,12 +157,12 @@ public class WatermarkApi {
      * Add watermarks to a document of any supported type.
      * 
      * @param request The request model
-     * @return ApiResponse&lt;WatermarkResult&gt;
+     * @return ApiResponse&lt;AddResult&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<WatermarkResult> addWithHttpInfo(AddRequest request) throws ApiException {
+    public ApiResponse<AddResult> addWithHttpInfo(AddRequest request) throws ApiException {
         com.squareup.okhttp.Call call = addValidateBeforeCall(request, null, null);
-        Type localVarReturnType = new TypeToken<WatermarkResult>(){}.getType();
+        Type localVarReturnType = new TypeToken<AddResult>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -174,7 +174,7 @@ public class WatermarkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call addAsync(AddRequest request, final ApiCallback<WatermarkResult> callback) throws ApiException {
+    public com.squareup.okhttp.Call addAsync(AddRequest request, final ApiCallback<AddResult> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -196,7 +196,7 @@ public class WatermarkApi {
         }
 
         com.squareup.okhttp.Call call = addValidateBeforeCall(request, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<WatermarkResult>(){}.getType();
+        Type localVarReturnType = new TypeToken<AddResult>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
